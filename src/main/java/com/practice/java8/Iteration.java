@@ -3,16 +3,28 @@ package com.practice.java8;
         import java.math.BigDecimal;
         import java.util.Arrays;
         import java.util.List;
-        import java.util.function.Consumer;
+        import java.util.function.*;
 
 /**
  * Created by msivasub on 08/11/2017.
  */
 public class Iteration {
+
+
+
     final List<BigDecimal> prices = Arrays.asList(new BigDecimal("10"), new BigDecimal("20"),new BigDecimal("30"), new BigDecimal("40"),new BigDecimal(40));
 
     private void testSteamMapFilter() {
         prices.stream().filter(price->price.compareTo(BigDecimal.valueOf(20))>0).map(price -> price.multiply(BigDecimal.valueOf(0.9))).reduce(BigDecimal.ZERO,BigDecimal::add);
+
+    }
+
+    public Iteration() {
+
+    }
+
+
+    public Iteration(int numeber) {
 
     }
 
@@ -30,6 +42,14 @@ public class Iteration {
         });
     }
 
+    Function<String, Integer> stringToInteger =
+            (String s) -> Integer.parseInt(s);
+
+    Supplier<Iteration> s1 = Iteration::new;
+
+    Function<Integer,Iteration> iterationNew = Iteration::new;
+
+    Function<String, Integer> stringToIntegerMethodReference = Integer::parseInt;
 
     private void forEachWithLambda() {
         prices.forEach((final BigDecimal price) -> System.out.println(price));
@@ -41,5 +61,7 @@ public class Iteration {
         //method reference
         prices.forEach(System.out::println);
     }
+
+
 
 }
